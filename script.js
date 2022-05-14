@@ -14,3 +14,51 @@ const allClearButton = document.querySelector('[data-all-clear]')
 const previousOperandTextElement = document.querySelector('[data-previous-operand]')
 const currentOperandTextElement = document.querySelector('[data-current-operand]')
 
+const clear = function() {
+    this.currentOperand = ''
+    this.previousOperand = ''
+    this.operation = undefined
+};
+
+const del = function() {
+
+};
+
+const appendNumber = function(number) {
+    if (number === '.' && this.currentOperand.includes('.')) return
+    this.currentOperand = this.currentOperand.toString() + number.toString()
+};
+
+const chooseOperation = function(operation) {
+    if (this.currentOperand === '') return;
+    if (this.previousOperand !== '') {
+        this.compute();
+    }
+    this.operation = operation
+    this.previousOperand = this.currentOperand
+    this.currentOperand = ''
+};
+
+const compute = function() {
+
+};
+
+const updateDisplay = function() {
+
+};
+
+const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
+
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.appendNumber(button.innerText);
+        calculator.updateDisplay();
+    })
+});
+
+operationButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.chooseOperation(button.innerText)
+        calculator.updateDisplay()
+    })
+});
