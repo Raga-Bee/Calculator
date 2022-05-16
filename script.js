@@ -21,7 +21,7 @@ const clear = function() {
 };
 
 const del = function() {
-
+    this.currentOperand = this.currentOperand.toString().slice(0, -1)
 };
 
 const appendNumber = function(number) {
@@ -92,5 +92,10 @@ equalsButton.addEventListener('click', button => {
 
 allClearButton.addEventListener('click', button => {
     calculator.clear()
+    calculator.updateDisplay()
+})
+
+deleteButton.addEventListener('click', button => {
+    calculator.delete()
     calculator.updateDisplay()
 })
